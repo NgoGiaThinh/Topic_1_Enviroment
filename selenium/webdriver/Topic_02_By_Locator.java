@@ -7,13 +7,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import javax.xml.namespace.QName;
 import java.time.Duration;
 
-public class Topic_02_Locator {
+public class Topic_02_By_Locator {
     WebDriver driver;
 
-    public Topic_02_Locator() {
+    public Topic_02_By_Locator() {
     }
 
     @BeforeClass
