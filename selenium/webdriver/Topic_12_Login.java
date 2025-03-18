@@ -20,14 +20,14 @@ public class Topic_12_Login {
 
     @BeforeClass
     public void beforeClass(){
-        this.driver = new ChromeDriver();
+        this.driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
     }
 
     @Test
     public void TC_01_Empty() {
-        this.driver.get("https://live.techpanda.org/");
+        this.driver.get("http://live.techpanda.org/");
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
 
         driver.findElement(By.cssSelector("button#send2")).click();
@@ -41,7 +41,7 @@ public class Topic_12_Login {
 
     @Test
     public void TC_02_Invalid_email() throws InterruptedException {
-        this.driver.get("https://live.techpanda.org/");
+        this.driver.get("http://live.techpanda.org/");
 
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         driver.findElement(By.cssSelector("input#email")).sendKeys("123@123.123");
@@ -55,7 +55,7 @@ public class Topic_12_Login {
 
     @Test
     public void TC_03_Invalid_Password() {
-        this.driver.get("https://live.techpanda.org/");
+        this.driver.get("http://live.techpanda.org/");
 
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         driver.findElement(By.cssSelector("input#email")).sendKeys("thinh@gmail.com");
@@ -69,21 +69,19 @@ public class Topic_12_Login {
 
     @Test
     public void TC_04_Incorrect_Email() throws InterruptedException {
-        driver.get("https://live.techpanda.org/");
+        driver.get("http://live.techpanda.org/");
 
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         driver.findElement(By.cssSelector("input#email")).sendKeys("thinh@gmail.com");
         driver.findElement(By.cssSelector("input#pass")).sendKeys("12334256");
         driver.findElement(By.cssSelector("button#send2")).click();
-        Thread.sleep(1000);
 
-        driver.findElement(By.cssSelector("button#proceed-button")).click();
         Assert.assertEquals( driver.findElement(By.cssSelector("li.error-msg span")).getText(),"Invalid login or password.");
 
     }
     @AfterClass
     public void afterClass(){
-        //driver.quit();
+        driver.quit();
     }
 
 }
