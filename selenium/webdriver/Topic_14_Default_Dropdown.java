@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -24,7 +25,11 @@ public class Topic_14_Default_Dropdown {
 
     @BeforeClass
     public void beforeClass(){
-        this.driver = new FirefoxDriver();
+        FirefoxOptions option = new FirefoxOptions();
+        option.addPreference("geo.enabled", false);
+        option.addPreference("geo.provider.use_corelocation", false);
+        driver = new FirefoxDriver(option);
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
     }
@@ -101,6 +106,26 @@ public class Topic_14_Default_Dropdown {
         //Assert.assertEquals( new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthDay']"))).getFirstSelectedOption().getText(), day);
         //Assert.assertEquals( new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthMonth']"))).getFirstSelectedOption().getText(), month );
         //Assert.assertEquals( new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthYear']"))).getFirstSelectedOption().getText(), year);
+
+    }
+
+    @Test
+    public void TC_03() throws InterruptedException {
+        driver.get("https://rode.com/en/support/where-to-buy");
+
+        new Select(driver.findElement(By.cssSelector("select#country"))).selectByVisibleText("Vietnam");
+        Thread.sleep(4000);
+
+        driver.findElement(By.cssSelector("input#map_search_query")).sendKeys("Ho Chi Minh");
+        driver.findElement(By.xpath("//button[text()='Search']")).click();
+
+        List<WebElement> dealerBranches = driver.findElements(By.cssSelector("div.dealer_branch h4"));
+        Assert.assertEquals(dealerBranches.size(), 16);
+
+        //for-each
+        for(WebElement dealerName : dealerBranches){
+            System.out.println(dealerName.getText());
+        }
 
     }
 
