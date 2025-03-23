@@ -98,17 +98,58 @@ public class Topic_17_checkbox_Radio {
         //3 - select/deselect 1 item trong all item
 
         for (WebElement checkbox: allcheckboxes){
-            if(checkbox.getDomAttribute("value").equals("Fainting Spells") && !checkbox.isSelected()){
+            if(checkbox.getDomAttribute("value").equals("Heart Attack") && !checkbox.isSelected()){
                 checkbox.click();
             }
         }
         //4 - verify
         for (WebElement checkbox : allcheckboxes){
-            if (checkbox.getDomAttribute("value").equals("Fainting Spells")){
+            if (checkbox.getDomAttribute("value").equals("Heart Attack")){
                 Assert.assertTrue(checkbox.isSelected());
             }
         }
     }
+
+    @Test
+    public void TC_04_Radio_Button_Summer() throws InterruptedException {
+        driver.get("https://material.angular.io/components/radio/examples");
+
+        Thread.sleep(2000);
+        By radioSummer = By.xpath("//label[text()='Summer']/preceding-sibling::div/input");
+
+        if (!driver.findElement(radioSummer).isSelected()){
+            driver.findElement(radioSummer).click();
+            Thread.sleep(2000);
+        }
+
+        Assert.assertTrue(driver.findElement(radioSummer).isSelected());
+
+    }
+    @Test
+    public void TC_05_checkbox_Checked_Inderterminate() throws InterruptedException {
+        driver.get("https://material.angular.io/components/checkbox/examples");
+        Thread.sleep(2000);
+
+        By radioChecked = By.xpath("//label[text()='Checked']/preceding-sibling::div/input");
+        By radioIndeterminate = By.xpath("//label[text()='Indeterminate']/preceding-sibling::div/input");
+        driver.findElement((radioChecked)).click();
+        driver.findElement((radioIndeterminate)).click();
+
+        Assert.assertTrue(driver.findElement(radioChecked).isSelected());
+        Assert.assertTrue(driver.findElement(radioIndeterminate).isSelected());
+        Thread.sleep(2000);
+
+
+        driver.findElement((radioChecked)).click();
+        driver.findElement((radioIndeterminate)).click();
+
+        Assert.assertFalse(driver.findElement(radioChecked).isSelected());
+        Assert.assertFalse(driver.findElement(radioIndeterminate).isSelected());
+
+        Thread.sleep(2000);
+
+    }
+
 
     @AfterClass
     public void afterClass(){ driver.quit();}
