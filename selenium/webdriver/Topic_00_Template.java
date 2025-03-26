@@ -20,6 +20,9 @@ public class Topic_00_Template {
     @BeforeClass
     public void beforeClass(){
         this.driver = new FirefoxDriver();
+        //this.driver = new EdgeDriver();
+        //this.driver = new ChromeDriver();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
 
