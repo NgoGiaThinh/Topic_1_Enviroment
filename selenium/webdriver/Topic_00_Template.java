@@ -31,26 +31,30 @@ public class Topic_00_Template {
 
     @Test
     public void TC_01() {
-        this.driver.get("https://www.facebook.com/");
+        driver.get("");
 
     }
 
     @Test
     public void TC_02() {
+        driver.get("");
     }
 
     @Test
     public void TC_03() {
+        driver.get("");
     }
 
 
     @Test
     public void TC_04() {
+        driver.get("");
     }
 
 
     @Test
     public void TC_05() {
+        driver.get("");
     }
 
 
