@@ -1,5 +1,6 @@
 package webdriver;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -14,6 +15,7 @@ import java.time.Duration;
 public class Topic_00_Template {
     WebDriver driver;
     Actions action;
+    JavascriptExecutor jsExecutor;
     public Topic_00_Template() {
     }
 
@@ -27,6 +29,7 @@ public class Topic_00_Template {
         driver.manage().window().maximize();
 
         action = new Actions(driver);
+        jsExecutor = (JavascriptExecutor) driver;
     }
 
     @Test
@@ -59,5 +62,7 @@ public class Topic_00_Template {
 
 
     @AfterClass
-    public void afterClass(){ driver.quit();}
+    public void afterClass(){
+        driver.quit();
+    }
 }
