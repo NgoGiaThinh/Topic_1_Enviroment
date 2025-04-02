@@ -78,7 +78,7 @@ public class Topic_29_UploadFile {
     }
 
     @Test
-    public void TC_02_Multiple() {
+    public void TC_02_Multiple() throws InterruptedException {
         driver.get("https://blueimp.github.io/jQuery-File-Upload/");
 
         By uploadFile = By.xpath("//input[@type='file']");
