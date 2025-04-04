@@ -38,7 +38,6 @@ public class Topic_35_Wait_V_Explicit_III {
 
 
         driver.manage().window().maximize();
-
         action = new Actions(driver);
         jsExecutor = (JavascriptExecutor) driver;
     }
